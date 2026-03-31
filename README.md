@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# 📋 Full-Stack Kanban Task Board
+**A High-Performance Workflow Management Interface**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional-grade Kanban application built with **React**, **TypeScript**, and **Supabase**. This project demonstrates advanced state management, real-time database synchronization, and complex relational data modeling.
 
-Currently, two official plugins are available:
+## 🚀 Live Application
+**https://my-task-board-repository-erompx8se-jfm-git-devs-projects.vercel.app**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features & Functionality
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Core Kanban Engine
+- **Drag-and-Drop:** Built using the native HTML5 API for high-performance card movement across status columns.
+- **Real-Time Persistence:** All changes sync instantly to a PostgreSQL database via Supabase.
+- **Guest Authentication:** Secure anonymous sessions allow users to manage their own private data without a complex signup process.
 
-## Expanding the ESLint configuration
+### 2. Advanced Organization
+- **Relational Team Management:** Add teammates and assign them to specific tasks. This uses a **Foreign Key** relationship in the database.
+- **Activity Ledger:** A historical audit trail for every task. Click a card to view a timeline of when it was created or moved.
+- **Multi-Criteria Filtering:** A powerful search engine that filters by title, description, priority, assignee, or custom labels using **Memoized Derived State**.
+- **Visual Urgency:** High-priority items are color-coded, and overdue tasks trigger a red alert badge.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Technical Guide (For Graders & Developers)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### The Architecture
+This project follows a **Serverless/BaaS (Backend-as-a-Service)** architecture.
+- **Frontend:** React 18 with Vite for optimized builds.
+- **Backend:** Supabase handles PostgreSQL hosting, API generation (PostgREST), and Authentication.
+- **Security:** Row Level Security (RLS) is enabled at the database level to ensure data isolation between guest sessions.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Key Logic & Optimization
+- **useMemo for Filtering:** Search and filtering are performed on the client-side using `useMemo` to prevent unnecessary re-renders and ensure the UI stays responsive even with large datasets.
+- **Optimistic UI:** When a task is dragged, the UI updates immediately before the database call finishes, providing a "zero-latency" feel for the user.
+- **Data Modeling:** Uses PostgreSQL **Text Arrays** for labels and **Foreign Key** constraints for assignees and activity logs to ensure data integrity.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Step-by-Step Setup & Deployment
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 1. Local Development Setup
+Follow these commands to run the project on your machine:
+
+```bash
+# Clone the project
+git clone https://github.com/jfm-git-dev/task-board-app
+cd task-board-app
+
+# Install all project dependencies
+npm install
+
+# Environment Variables
+# Create a .env.local file in the root directory and add:
+VITE_SUPABASE_URL=https://wgomxtltsobzcbpcxruj.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indnb214dGx0c29iemNicGN4cnVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NjUzNzksImV4cCI6MjA5MDU0MTM3OX0.WLYJPtq0Svbn_C6HCjlhv8P7zPRhrFes-wYrFKZVKRQ
+
+# Run the dev server
+npm run dev
