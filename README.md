@@ -40,7 +40,6 @@ This project follows a **Serverless/BaaS (Backend-as-a-Service)** architecture.
 
 ## 🛠️ Step-by-Step Setup & Deployment
 
-### 1. Local Development Setup
 Follow these commands to run the project on your machine:
 
 ```bash
