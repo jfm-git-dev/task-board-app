@@ -4,7 +4,7 @@
 A professional-grade Kanban application built with **React**, **TypeScript**, and **Supabase**. This project demonstrates advanced state management, real-time database synchronization, and complex relational data modeling.
 
 ## 🚀 Live Application
-**[PASTE YOUR VERCEL URL HERE]**
+**https://my-task-board-repository-erompx8se-jfm-git-devs-projects.vercel.app**
 
 ---
 
@@ -45,8 +45,8 @@ Follow these commands to run the project on your machine:
 
 ```bash
 # Clone the project
-git clone https://github.com/jfm-git-dev/task-manager-assessment
-cd task-manager-assessment
+git clone https://github.com/jfm-git-dev/task-board-app
+cd task-board-app
 
 # Install all project dependencies
 npm install
